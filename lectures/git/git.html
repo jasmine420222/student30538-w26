@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Peter Ganong, Maggie Shi, and Will Pennington">
-  <meta name="dcterms.date" content="2025-10-17">
+  <meta name="dcterms.date" content="2026-01-05">
   <title>Version Control (Lecture 1)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -399,7 +399,7 @@ Peter Ganong, Maggie Shi, and Will Pennington
 </div>
 </div>
 
-  <p class="date">10/17/25</p>
+  <p class="date">January 5, 2026</p>
 </section>
 <section>
 <section id="conceptual" class="title-slide slide level1 center">
@@ -422,6 +422,7 @@ Peter Ganong, Maggie Shi, and Will Pennington
 <h2>What is version control?</h2>
 <ul>
 <li>Version control: a system that records changes to a file or set of files over time so that you can recall specific versions later</li>
+<li>Think of it as saving a “snapshot” in time of what a file looked like</li>
 <li>Examples of version control
 <ul>
 <li>Informal: date multiple versions of a document</li>
@@ -431,25 +432,19 @@ Peter Ganong, Maggie Shi, and Will Pennington
 </section>
 <section id="what-is-centralized-version-control" class="slide level2">
 <h2>What is centralized version control?</h2>
-<p>Centralized version control allows for easy collaboration across developers</p>
 
 <img data-src="img/centralized_vc.png" style="width:70.0%" class="r-stretch quarto-figure-center"><p>Note: a repository is basically a folder directory with extra capabilities</p>
 </section>
 <section id="git-distributed-version-control" class="slide level2">
 <h2>Git: “distributed” version control</h2>
-<ul>
-<li>Each computer fully mirrors the repository, including its full history</li>
-</ul>
+<p>Each computer fully mirrors the Git repository, including its full history</p>
 
 <img src="img/distributed_vc.png" style="display:block; margin:0 auto;" class="r-stretch"></section>
 <section id="define-terms" class="slide level2" style="font-size: 0.8em">
 <h2>Define terms</h2>
 <ul>
 <li>Git: software used for version control locally (i.e., on your computer)</li>
-<li>Github: hosting service for git repositories – i.e., a place to store them online
-<ul>
-<li>There are other hosting services for git like Bitbucket and GitLab. You can also run your own git server if you really want to!</li>
-</ul></li>
+<li>Github: hosting service for git repositories – i.e., a place to store them online</li>
 </ul>
 </section>
 <section id="why-should-you-learn-git-in-general" class="slide level2">
@@ -461,7 +456,7 @@ Peter Ganong, Maggie Shi, and Will Pennington
 <li>Crucial for “teamwork” with AI agents (typical workflow is that AI agent proposes work for you to review)</li>
 </ul>
 </section>
-<section id="a-skeptics-question" class="slide level2">
+<section id="a-skeptics-question" class="slide level2" style="font-size: 0.7em">
 <h2>A skeptic’s question</h2>
 <blockquote>
 <p>If dropbox and google docs can track changes automatically (and there are similar tools for code like Google Colab and <a href="https://code.visualstudio.com/docs/editor/vscode-web">VSCode for the web</a>) then why do we even need to use git?</p>
@@ -498,11 +493,11 @@ Peter Ganong, Maggie Shi, and Will Pennington
 <section id="how-not-to-learn-git" class="slide level2">
 <h2>How not to learn git</h2>
 <ul>
-<li>Command line git is what will be assessed on the quiz, the pset, and the final.
+<li>Command line git is what will be assessed on the pset, in lab, and the final.
 <ul>
-<li>I.e., using Terminal or Powershell – where you have been running the <code>conda activate</code> commands</li>
+<li>I.e., using Terminal or Powershell</li>
 </ul></li>
-<li>There are tools that try to make git easier, like VSCode’s git panel, Github Desktop, Github.com web upload. Do not use them in this class. If you start using that then you won’t understand as well what is happening under the hood.</li>
+<li>There are tools that try to make git easier by avoiding the command line, like VSCode’s git panel, Github Desktop, Github.com web upload. Do not use them in this class! If you start using that then you won’t understand as well what is happening under the hood.</li>
 <li>Once you have a good grasp of git, then use whatever tool you are fastest in (fwiw, your professors find that command line is fastest!)</li>
 </ul>
 </section>
@@ -612,7 +607,7 @@ Analogy: in the standard workflow, steps 2 and 3 happen automatically after you 
 <li>This is how AI agents work. To understand what they are doing for you you need the command line.</li>
 </ul>
 </section>
-<section id="review-of-commands" class="slide level2" style="font-size: 0.8em">
+<section id="review-of-commands" class="slide level2" style="font-size: 0.7em">
 <h2>Review of commands</h2>
 <table>
 <thead>
@@ -693,18 +688,23 @@ Analogy: in the standard workflow, steps 2 and 3 happen automatically after you 
 <li>Untracked – file is not tracked by git in any way</li>
 <li>Version controlled files
 <ul>
-<li>Unmodified – file has not changed since last commit</li>
+<li>Unmodified – file has not changed since last “commit” (the last version of this file that git took a “snapshot” of)</li>
 <li>File has changed since last commit
 <ul>
-<li>Modified – user has not asked git to record the change</li>
-<li>Staged – user will soon ask git to record the change</li>
+<li>Modified – user has not yet asked git to record the change for next commit</li>
+<li>Staged – user will soon ask git to record the change for next commit</li>
 </ul></li>
 </ul></li>
 </ul>
+<!-- MS to GGG: clarified what a commit is (a "snapshot") since we don't define it until the next slide -->
 </section>
 <section id="the-three-most-important-git-commands" class="slide level2">
 <h2>the three most important git commands</h2>
 <table>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>command</th>
@@ -713,48 +713,48 @@ Analogy: in the standard workflow, steps 2 and 3 happen automatically after you 
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>git status</code></td>
+<td><code>% git status</code></td>
 <td>check which files have changed</td>
 </tr>
 <tr class="even">
-<td><code>git add &lt;filename&gt;</code></td>
+<td><code>% git add &lt;filename&gt;</code></td>
 <td>stage a file</td>
 </tr>
 <tr class="odd">
-<td><code>git commit -m "&lt;message&gt;"</code></td>
-<td>commit all staged files</td>
+<td><code>% git commit -m "&lt;message&gt;"</code></td>
+<td>record changes to all staged files and add a message for what’s in this “snapshot”</td>
 </tr>
 </tbody>
 </table>
-<p>We will now walk through an first worked example of how to use git</p>
+<p>We will now walk through a first worked example of how to use git</p>
 </section>
 <section id="worked-example-1-of-4" class="slide level2">
 <h2>worked example (1 of 4)</h2>
 <p>Create a new repo called <code>test</code></p>
-<pre><code>% git init test
-% cd test
-% ls
-&lt;empty&gt;</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>% git init test</span>
+<span id="cb1-2"><a href="#cb1-2"></a>% cd test</span>
+<span id="cb1-3"><a href="#cb1-3"></a>% ls</span>
+<span id="cb1-4"><a href="#cb1-4"></a>&lt;empty&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>I make and save a new file called foo.txt</p>
-<pre><code>% echo "hello world" &gt; foo.txt</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>% echo "hello world" &gt; foo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>I can see this file in my directory.</p>
-<pre><code>% ls
-foo.txt</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>% ls</span>
+<span id="cb3-2"><a href="#cb3-2"></a>foo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And I can print the contents of this file</p>
-<pre><code>% cat foo.txt
-hello world</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>% cat foo.txt</span>
+<span id="cb4-2"><a href="#cb4-2"></a>hello world</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="interpretation-of-step-1" class="slide level2">
 <h2>Interpretation of step 1</h2>
 
-<img data-src="img/file_lifecycle_cropped.png" class="r-stretch quarto-figure-center"><pre><code>% git status
-On branch master
-
-No commits yet
-
-Untracked files:
-  (use "git add &lt;file&gt;..." to include in what will be committed)
-    foo.txt</code></pre>
+<img data-src="img/file_lifecycle_cropped.png" class="r-stretch quarto-figure-center"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>% git status</span>
+<span id="cb5-2"><a href="#cb5-2"></a>On branch master</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>No commits yet</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a>Untracked files:</span>
+<span id="cb5-7"><a href="#cb5-7"></a>  (use "git add &lt;file&gt;..." to include in what will be committed)</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    foo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We created an “untracked” file</p>
 <aside class="notes">
 <p>Note the distinction between the file being <em>saved</em> within the repository, but still <em>untracked</em> from the point of view of Git/version control.</p>
@@ -774,16 +774,16 @@ Untracked files:
 </section>
 <section id="worked-example-2-of-4" class="slide level2">
 <h2>worked example (2 of 4)</h2>
-<p>I ask git to record my change (“stage”)</p>
-<pre><code>% git add foo.txt
-% git status       
-On branch master
-
-No commits yet
-
-Changes to be committed:
-  (use "git rm --cached &lt;file&gt;..." to unstage)
-    new file:   foo.txt</code></pre>
+<p>I ask git to record my change (“stage”) for the next commit</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>% git add foo.txt</span>
+<span id="cb6-2"><a href="#cb6-2"></a>% git status       </span>
+<span id="cb6-3"><a href="#cb6-3"></a>On branch master</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>No commits yet</span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a>Changes to be committed:</span>
+<span id="cb6-8"><a href="#cb6-8"></a>  (use "git rm --cached &lt;file&gt;..." to unstage)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>    new file:   foo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="interpretation-of-step-2" class="slide level2">
 <h2>Interpretation of step 2</h2>
@@ -804,31 +804,36 @@ Changes to be committed:
 </section>
 <section id="worked-example-3-of-4" class="slide level2">
 <h2>worked example (3 of 4)</h2>
-<pre><code>% git commit -m "create foo.txt"
-[master (root-commit) a6e1b8a] create foo.txt
- 1 file changed, 1 insertion(+)
- create mode 100644 foo.txt
-% git status
-On branch master
-nothing to commit, working tree clean</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>% git commit -m "create foo.txt"</span>
+<span id="cb7-2"><a href="#cb7-2"></a>[master (root-commit) a6e1b8a] create foo.txt</span>
+<span id="cb7-3"><a href="#cb7-3"></a> 1 file changed, 1 insertion(+)</span>
+<span id="cb7-4"><a href="#cb7-4"></a> create mode 100644 foo.txt</span>
+<span id="cb7-5"><a href="#cb7-5"></a>% git status</span>
+<span id="cb7-6"><a href="#cb7-6"></a>On branch master</span>
+<span id="cb7-7"><a href="#cb7-7"></a>nothing to commit, working tree clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note: when you try to commit for the first time, you will need to run <code>% git config --global user.name "Your Name"</code> and <code>% git config --global user.email "you@example.com"</code></p>
 </section>
 <section id="interpretation-of-step-3" class="slide level2">
 <h2>Interpretation of step 3</h2>
 
-<img data-src="img/file_lifecycle.png" style="width:80.0%" class="r-stretch quarto-figure-center"><p>What did we do? we moved the file from “staged” to “unmodified”.</p>
+<img data-src="img/file_lifecycle.png" style="width:80.0%" class="r-stretch quarto-figure-center"><p>What did we do?</p>
+<ol type="1">
+<li>By committing, we moved the file from “staged” to “unmodified”.</li>
+<li>We labeled what change we made as part of this commit (“create foo.txt”)</li>
+</ol>
 </section>
 <section id="worked-example-4-of-4" class="slide level2">
 <h2>worked example (4 of 4)</h2>
-<pre><code>% echo "This text will be added to the end." &gt;&gt; foo.txt
-% git status
-On branch master
-Changes not staged for commit:
-  (use "git add &lt;file&gt;..." to update what will be committed)
-  (use "git restore &lt;file&gt;..." to discard changes in working directory)
-    modified:   foo.txt
-
-no changes added to commit (use "git add" and/or "git commit -a")
-% git add foo.txt</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>% echo "This text will be added to the end." &gt;&gt; foo.txt</span>
+<span id="cb8-2"><a href="#cb8-2"></a>% git status</span>
+<span id="cb8-3"><a href="#cb8-3"></a>On branch master</span>
+<span id="cb8-4"><a href="#cb8-4"></a>Changes not staged for commit:</span>
+<span id="cb8-5"><a href="#cb8-5"></a>  (use "git add &lt;file&gt;..." to update what will be committed)</span>
+<span id="cb8-6"><a href="#cb8-6"></a>  (use "git restore &lt;file&gt;..." to discard changes in working directory)</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    modified:   foo.txt</span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a>no changes added to commit (use "git add" and/or "git commit -a")</span>
+<span id="cb8-10"><a href="#cb8-10"></a>% git add foo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="interpretation-of-step-4" class="slide level2">
 <h2>Interpretation of step 4</h2>
@@ -837,25 +842,37 @@ no changes added to commit (use "git add" and/or "git commit -a")
 <li>We edited the file with <code>% echo "This text will be added to the end." &gt;&gt; foo.txt</code> (“unmodified” -&gt; “modified”).</li>
 <li>We staged the file with <code>% git add foo.txt</code> (“modified” -&gt; “staged”).</li>
 </ol>
-</section>
-<section id="worked-example-4-of-4-1" class="slide level2">
-<h2>worked example (4 of 4)</h2>
-<pre><code>% echo "This text will be added to the end." &gt;&gt; foo.txt
+<!-- 
+## worked example (4 of 4)
+
+
+
+```{bash}
+% echo "This text will be added to the end." >> foo.txt
 % git status
 On branch master
 Changes not staged for commit:
-  (use "git add &lt;file&gt;..." to update what will be committed)
-  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
     modified:   foo.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
-% git add foo.txt</code></pre>
+% git add foo.txt
+``` -->
 </section>
-<section id="do-pair-share" class="slide level2">
+<section id="do-pair-share" class="slide level2" data-background-color="aliceblue">
+<h2>Do-pair-share</h2>
+<ul>
+<li><em>Do</em> – do exercise on your own</li>
+<li><em>Pair</em> – compare your results with person next to you</li>
+<li><em>Share</em> – discuss results as a class</li>
+</ul>
+</section>
+<section id="do-pair-share-1" class="slide level2" data-background-color="aliceblue">
 <h2>Do-Pair-Share</h2>
 <p>Before starting, run <code>% git --version</code> to verify that git is installed. (Installation <a href="https://github.com/git-guides/install-git">guide</a>)</p>
-<p>Go back through the slides in the worked example and run each of these steps at your command line. (We promise that future in-class exercises will be more complicated!)</p>
-<p>Questions</p>
+<p>Go back through the slides in the worked example and run each of these steps at your command line.</p>
+<p><strong>Questions</strong></p>
 <ol type="1">
 <li>What will we get if we run <code>git status</code> at the end of the example?</li>
 <li>What will we get if we run <code>git commit -m "my second commit"</code> and then run <code>git status</code>?</li>
@@ -875,18 +892,18 @@ no changes added to commit (use "git add" and/or "git commit -a")
           display:block!important;
       }</style></aside>
 </section>
-<section id="do-pair-share-commands-collected-together" class="slide level2">
+<section id="do-pair-share-commands-collected-together" class="slide level2" data-background-color="aliceblue">
 <h2>Do-Pair-Share Commands Collected Together</h2>
-<pre><code>% git init test
-% cd test
-% echo "hello world" &gt; foo.txt
-% git status
-% git add foo.txt
-% git status   
-% git commit -m "create foo.txt"
-% git status
-% echo "This text will be added to the end." &gt;&gt; foo.txt
-% git add foo.txt</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>% git init test</span>
+<span id="cb9-2"><a href="#cb9-2"></a>% cd test</span>
+<span id="cb9-3"><a href="#cb9-3"></a>% echo "hello world" &gt; foo.txt</span>
+<span id="cb9-4"><a href="#cb9-4"></a>% git status</span>
+<span id="cb9-5"><a href="#cb9-5"></a>% git add foo.txt</span>
+<span id="cb9-6"><a href="#cb9-6"></a>% git status   </span>
+<span id="cb9-7"><a href="#cb9-7"></a>% git commit -m "create foo.txt"</span>
+<span id="cb9-8"><a href="#cb9-8"></a>% git status</span>
+<span id="cb9-9"><a href="#cb9-9"></a>% echo "This text will be added to the end." &gt;&gt; foo.txt</span>
+<span id="cb9-10"><a href="#cb9-10"></a>% git add foo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="helpful-git-syntax" class="slide level2">
 <h2>Helpful git syntax</h2>
@@ -912,15 +929,15 @@ no changes added to commit (use "git add" and/or "git commit -a")
 <section id="git-ignore-ii" class="slide level2">
 <h2>Git Ignore II</h2>
 <p>Example <code>.gitignore</code> :</p>
-<pre><code># ignore compiled python
-.pyc
-
-# ignore virtual environment packages
-.venv/
-
-# ignore pesky auto-created files on macs
-.DS_Store
-**/.DS_Store</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a># ignore compiled python</span>
+<span id="cb10-2"><a href="#cb10-2"></a>.pyc</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a># ignore virtual environment packages</span>
+<span id="cb10-5"><a href="#cb10-5"></a>.venv/</span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a># ignore pesky auto-created files on macs</span>
+<span id="cb10-8"><a href="#cb10-8"></a>.DS_Store</span>
+<span id="cb10-9"><a href="#cb10-9"></a>**/.DS_Store</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>See more examples <strong><a href="https://github.com/github/gitignore">here (link)</a></strong> including for Python</p>
 </section>
 <section id="summary-1" class="slide level2" style="font-size: 0.8em">
@@ -959,7 +976,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 <li>Use <code>.gitignore</code> to ignore irrelevant files</li>
 </ul>
 </section>
-<section id="do-pair-share-gitignore-do-in-lab" class="slide level2" style="font-size: 0.7em">
+<section id="do-pair-share-gitignore-do-in-lab" class="slide level2" style="font-size: 0.7em" data-background-color="aliceblue">
 <h2>Do-Pair-Share gitignore (do in lab)</h2>
 <ol type="1">
 <li>In Terminal (Mac)/PowerShell (PC), create a repo named <code>test</code></li>
@@ -992,8 +1009,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 <li>“Undo”</li>
 </ul>
 </section>
-<section id="branching-stylefont-size-0.6" class="slide level2">
-<h2>Branching {style=“font-size: 0.6</h2>
+<section id="branching" class="slide level2" style="font-size: 0.6em">
+<h2>Branching</h2>
 
 <img data-src="img/branching_1.png" style="width:105.0%" class="r-stretch quarto-figure-center"><ul>
 <li>We will see a lot of images like this, so let’s unpack it in some detail
@@ -1026,10 +1043,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 <h2>Introduce <code>HEAD</code></h2>
 
 <img data-src="img/branching_2.png" style="width:105.0%" class="r-stretch quarto-figure-center"><ul>
-<li><code>HEAD</code> is your current position in the Git repo’s history
-<ul>
-<li>Helpful analogy: if you think of each commit as a different folder, this is like your current working directory at the command line</li>
-</ul></li>
+<li><code>HEAD</code> is your current position in the Git repo’s history <!-- * Helpful analogy: if you think of each commit as a different folder, this is like your current working directory at the command line MS to GGG: I think this is more confusing than helpful--></li>
 <li>Right now, the <code>HEAD</code> is in the <code>master</code> branch at commit <code>C2</code> (add <code>HEAD</code> to tinkertoy)</li>
 <li><code>% git switch iss53</code></li>
 <li>Switches our <code>HEAD</code> (i.e., where we are) to our new branch <code>iss53</code> (update <code>HEAD</code> on tinkertoy)</li>
@@ -1177,9 +1191,9 @@ no changes added to commit (use "git add" and/or "git commit -a")
 <li>You test the code and it is ready for production so you decide to bring this work into <code>master</code> as well (update tinkertoy)</li>
 </ul>
 
-<img data-src="img/merging_3.png" style="width:75.0%" class="r-stretch quarto-figure-center"><p>This is called a <em>“three way merge”</em> because it relies on three inputs: the <em>nearest common ancestor</em> (<code>C2</code>), current branch (<code>C4</code>), incoming branch (<code>C5</code>)</p>
+<img data-src="img/merging_3.png" style="width:75.0%" class="r-stretch quarto-figure-center"><p>This is called a <em>“three way merge”</em> because it relies on three inputs: the <em>nearest common ancestor</em> (<code>C2</code>), current branch (<code>C4</code>), incoming branch ( <code>C5</code>)</p>
 </section>
-<section id="three-way-merge-iii" class="slide level2">
+<section id="three-way-merge-iii" class="slide level2" style="font-size: 0.7em">
 <h2>Three way merge III</h2>
 <p>You ask git to merge but it refuses!</p>
 <pre><code>% git switch master 
@@ -1259,39 +1273,39 @@ Merge made by the 'ort' strategy.</code></pre>
 <h2>Three way merge with a conflict II</h2>
 <p><strong>Original Code</strong></p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">'''</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="co">A function that adds x to 3</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="co">'''</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="kw">def</span> add(x):</span>
-<span id="cb17-5"><a href="#cb17-5"></a>    <span class="cf">return</span> (x <span class="op">+</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">'''</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="co">A function that adds x to 3</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co">'''</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="kw">def</span> add(x):</span>
+<span id="cb16-5"><a href="#cb16-5"></a>    <span class="cf">return</span> (x <span class="op">+</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Alternate Versions</strong></p>
 <div class="columns">
 <div class="column" style="width:30%;">
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">'''</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="co">A function that adds x to 4</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="co">'''</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="kw">def</span> add(x):</span>
-<span id="cb18-5"><a href="#cb18-5"></a>    <span class="cf">return</span> (x <span class="op">+</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">'''</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="co">A function that adds x to 4</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="co">'''</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="kw">def</span> add(x):</span>
+<span id="cb17-5"><a href="#cb17-5"></a>    <span class="cf">return</span> (x <span class="op">+</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>% git switch main</code></pre>
 </div><div class="column" style="width:30%;">
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">'''</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="co">A function that adds a list of numbers together</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="co">'''</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="kw">def</span> add(x):</span>
-<span id="cb20-5"><a href="#cb20-5"></a>    <span class="cf">return</span> <span class="bu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">'''</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="co">A function that adds a list of numbers together</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co">'''</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="kw">def</span> add(x):</span>
+<span id="cb19-5"><a href="#cb19-5"></a>    <span class="cf">return</span> <span class="bu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>% git switch iss53</code></pre>
 </div><div class="column" style="width:30%;">
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">'''</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="co">A function that adds x to y</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="co">'''</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="kw">def</span> add(x, y):</span>
-<span id="cb22-5"><a href="#cb22-5"></a>    <span class="cf">return</span> (x <span class="op">+</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">'''</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="co">A function that adds x to y</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="co">'''</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="kw">def</span> add(x, y):</span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="cf">return</span> (x <span class="op">+</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>% git switch hotfix</code></pre>
 </div>
@@ -1434,13 +1448,13 @@ Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 <li>How <code>add.py</code> looks after we’ve clicked “Accept incoming change”: exactly like version in <code>hotfix</code></li>
 </ul>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="co">'''</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="co">A function that adds x to y</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="co">'''</span></span>
-<span id="cb26-4"><a href="#cb26-4"></a><span class="co"># define function</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a><span class="kw">def</span> add(x, y):</span>
-<span id="cb26-6"><a href="#cb26-6"></a><span class="co"># arguments: x, y (numbers to add)</span></span>
-<span id="cb26-7"><a href="#cb26-7"></a>    <span class="cf">return</span> (x <span class="op">+</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co">'''</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="co">A function that adds x to y</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="co">'''</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="co"># define function</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="kw">def</span> add(x, y):</span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="co"># arguments: x, y (numbers to add)</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a>    <span class="cf">return</span> (x <span class="op">+</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>(Of course, you could have resolved it by “Accepting current change”, which would look exactly like <code>main</code>!)</li>
@@ -1458,7 +1472,7 @@ git commit -m "C4: resolved conflict between main and hotfix and merged"</code><
 <h2>Three way merge with a conflict VIII – image</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/merge_example3.png" style="height:70.0%"></p>
+<p><img data-src="img/merge_example3.png" style="height:50.0%"></p>
 </figure>
 </div>
 </section>
@@ -1477,7 +1491,7 @@ preserved in case we want to revive it
 | C5   | `main` | Merge `iss53` into `main` | C2 and C4 | yes!      |
 -->
 </section>
-<section id="do-pair-share-merge-conflicts" class="slide level2" style="font-size: 0.7em">
+<section id="do-pair-share-merge-conflicts" class="slide level2" style="font-size: 0.6em" data-background-color="aliceblue">
 <h2>do-pair-share: merge conflicts</h2>
 <div class="{.}columns">
 <div class="column" style="width:45%;">
@@ -1640,9 +1654,9 @@ preserved in case we want to revive it
 <section id="what-happens-if-you-push-and-there-are-also-changes-in-the-remote" class="slide level2">
 <h2>what happens if you push and there are also changes in the remote?</h2>
 <p>You will see in Terminal/Powershell:</p>
-<p><code>Updates were rejected because the remote contains work that you do not have locally. This is usually caused by another repository pushing to the same ref. You may want to first merge the remote changes (e.g., hint: 'git pull') before pushing again.</code></p>
+<pre><code>Updates were rejected because the remote contains work that you do not have locally. This is usually caused by another repository pushing to the same ref. You may want to first merge the remote changes (e.g., hint: 'git pull') before pushing again.</code></pre>
 </section>
-<section id="pull-requests" class="slide level2" style="font-size: 0.8em">
+<section id="pull-requests" class="slide level2" style="font-size: 0.7em">
 <h2>Pull Requests</h2>
 <ul>
 <li>A pull request is a way to <em>propose</em> changes from your branch to be merged into the main project/branch</li>
@@ -1655,7 +1669,7 @@ preserved in case we want to revive it
 </figure>
 </div>
 </section>
-<section id="pull-requests-1" class="slide level2" style="font-size: 0.8em">
+<section id="pull-requests-1" class="slide level2" style="font-size: 0.7em">
 <h2>Pull Requests</h2>
 <ul>
 <li>Pull requests allow for line-by-line comparison of changed files on Github.com
@@ -1666,7 +1680,7 @@ preserved in case we want to revive it
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/pull_request_1.png" style="height:50.0%"></p>
+<p><img data-src="img/pull_request_1.png" style="height:40.0%"></p>
 </figure>
 </div>
 </section>

@@ -1,7 +1,8 @@
 ---
 title: "Version Control (Lecture 1)"
 author: "Peter Ganong, Maggie Shi, and Will Pennington"
-date: "2025-10-17"
+date: January 5, 2026
+date-format: long
 format:
     revealjs:
         slide-number: true
@@ -22,28 +23,26 @@ format:
 
 
 ## What is version control?
-* Version control: a system that records changes to a file or set of files over time so that you can recall specific versions later
+* Version control: a system that records changes to a file or set of files over time so that you can recall specific versions later 
+* Think of it as saving a "snapshot" in time of what a file looked like
 * Examples of version control
     * Informal: date multiple versions of a document
     * Tools like dropbox and google docs do this automatically
 
 ## What is centralized version control?
 
-Centralized version control allows for easy collaboration across developers
-
 ![](img/centralized_vc.png){fig-align="center" width=70%}
 
 Note: a repository is basically a folder directory with extra capabilities 
 
 ## Git: "distributed" version control 
-* Each computer fully mirrors the repository, including its full history
+Each computer fully mirrors the Git repository, including its full history
 
 <img src="img/distributed_vc.png" style="display:block; margin:0 auto;">
 
 ## Define terms {style="font-size: 0.8em"}
 * Git: software used for version control locally (i.e., on your computer)
 * Github: hosting service for git repositories -- i.e., a place to store them online
-    * There are other hosting services for git like Bitbucket and GitLab. You can also run your own git server if you really want to!
 
 ## Why should you learn Git in general?
 * Git never loses anything. 
@@ -51,7 +50,7 @@ Note: a repository is basically a folder directory with extra capabilities
 * Crucial in group projects to make sure you don't write over others' work or break something.
 * Crucial for "teamwork" with AI agents (typical workflow is that AI agent proposes work for you to review)
 
-## A skeptic's question
+## A skeptic's question{style="font-size: 0.7em"}
 > If dropbox and google docs can track changes automatically (and there are similar tools for code like Google Colab and [VSCode for the web](https://code.visualstudio.com/docs/editor/vscode-web)) then why do we even need to use git?
 
 Answer
@@ -78,9 +77,9 @@ Answer
 
 ## How not to learn git
 
-* Command line git is what will be assessed on the quiz, the pset, and the final. 
-    * I.e., using Terminal or Powershell -- where you have been running the `conda activate` commands 
-* There are tools that try to make git easier, like VSCode's git panel, Github Desktop, Github.com web upload. Do not use them in this class. If you start using that then you won't understand as well what is happening under the hood.
+* Command line git is what will be assessed on the pset, in lab, and the final. 
+    * I.e., using Terminal or Powershell 
+* There are tools that try to make git easier by avoiding the command line, like VSCode's git panel, Github Desktop, Github.com web upload. Do not use them in this class! If you start using that then you won't understand as well what is happening under the hood.
 * Once you have a good grasp of git, then use whatever tool you are fastest in (fwiw, your professors find that command line is fastest!)
 
 ## Summary
@@ -154,7 +153,7 @@ Analogy: in the standard workflow, steps 2 and 3 happen automatically after you 
 * Same commands across environments—great for collaboration and reproducible workflows
 * This is how AI agents work. To understand what they are doing for you you need the command line.
 
-## Review of commands {style="font-size: 0.8em"}
+## Review of commands {style="font-size: 0.7em"}
 
 | Action | macOS (Terminal ) or Windows (PowerShell) |
 | --- | --- | 
@@ -188,24 +187,26 @@ We will use `%` to indicate material run at command line. On some computers it w
 
 * Untracked -- file is not tracked by git in any way
 * Version controlled files
-    * Unmodified -- file has not changed since last commit
+    * Unmodified -- file has not changed since last "commit" (the last version of this file that git took a "snapshot" of)
     * File has changed since last commit
-        * Modified -- user has not asked git to record the change
-        * Staged -- user will soon ask git to record the change
+        * Modified -- user has not yet asked git to record the change for next commit
+        * Staged -- user will soon ask git to record the change for next commit
+
+<!-- MS to GGG: clarified what a commit is (a "snapshot") since we don't define it until the next slide -->
 
 ## the three most important git commands
 
 | command | what it does |
 | --- | --- |
-| `git status` | check which files have changed |
-| `git add <filename>` | stage a file | 
-| `git commit -m "<message>"` | commit all staged files |
+| `% git status` | check which files have changed |
+| `% git add <filename>` | stage a file | 
+| `% git commit -m "<message>"` | record changes to all staged files and add a message for what's in this "snapshot" |
 
-We will now walk through an first worked example of how to use git
+We will now walk through a first worked example of how to use git
 
 ## worked example (1 of 4)
 Create a new repo called `test`
-```{}
+```{bash}
 % git init test
 % cd test
 % ls
@@ -213,19 +214,19 @@ Create a new repo called `test`
 ```
 
 I make and save a new file called foo.txt
-```{}
+```{bash}
 % echo "hello world" > foo.txt
 ```
 
 I can see this file in my directory.
-```{}
+```{bash}
 % ls
 foo.txt
 ```
 
 And I can print the contents of this file
 
-```{}
+```{bash}
 % cat foo.txt
 hello world
 ```
@@ -233,7 +234,7 @@ hello world
 ## Interpretation of step 1
 
 ![](img/file_lifecycle_cropped.png){fig-align="center"}
-```{}
+```{bash}
 % git status
 On branch master
 
@@ -257,9 +258,9 @@ Note the distinction between the file being *saved* within the repository, but s
 * Just lists file names-->
 
 ## worked example (2 of 4)
-I ask git to record my change ("stage")
+I ask git to record my change ("stage") for the next commit
 
-```{}
+```{bash}
 % git add foo.txt
 % git status       
 On branch master
@@ -292,7 +293,7 @@ What did we do? we moved the file the full distance across the board, from "untr
 
 ## worked example (3 of 4)
 
-```{}
+```{bash}
 % git commit -m "create foo.txt"
 [master (root-commit) a6e1b8a] create foo.txt
  1 file changed, 1 insertion(+)
@@ -302,16 +303,20 @@ On branch master
 nothing to commit, working tree clean
 ```
 
+Note: when you try to commit for the first time, you will need to run `% git config --global user.name "Your Name"` and `% git config --global user.email "you@example.com"`
+
 ## Interpretation of step 3
 
 ![](img/file_lifecycle.png){fig-align="center" width=80%}
 
-What did we do? we moved the file from "staged" to "unmodified".
+What did we do? 
 
+1. By committing, we moved the file from "staged" to "unmodified".
+2. We labeled what change we made as part of this commit ("create foo.txt")
 
 ## worked example (4 of 4)
 
-```{}
+```{bash}
 % echo "This text will be added to the end." >> foo.txt
 % git status
 On branch master
@@ -332,10 +337,10 @@ no changes added to commit (use "git add" and/or "git commit -a")
 1. We edited the file with `% echo "This text will be added to the end." >> foo.txt` ("unmodified" -> "modified").
 2. We staged the file with `% git add foo.txt` ("modified" -> "staged").
 
-
+<!-- 
 ## worked example (4 of 4)
 
-```{}
+```{bash}
 % echo "This text will be added to the end." >> foo.txt
 % git status
 On branch master
@@ -346,16 +351,20 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 % git add foo.txt
-```
+``` -->
 
+## Do-pair-share {background-color="aliceblue"}
+* *Do* -- do exercise on your own
+* *Pair* -- compare your results with person next to you
+* *Share* -- discuss results as a class
 
-## Do-Pair-Share 
+## Do-Pair-Share {background-color="aliceblue"}
 
 Before starting, run `% git --version` to verify that git is installed. (Installation [guide](https://github.com/git-guides/install-git))
 
-Go back through the slides in the worked example and run each of these steps at your command line. (We promise that future in-class exercises will be more complicated!)
+Go back through the slides in the worked example and run each of these steps at your command line. 
 
-Questions
+**Questions**
 
 1. What will we get if we run `git status` at the end of the example?
 2. What will we get if we run `git commit -m "my second commit"` and then run `git status`?
@@ -372,9 +381,9 @@ Changes to be committed:
  1 file changed, 1 insertion(+)
 :::
 
-## Do-Pair-Share Commands Collected Together
+## Do-Pair-Share Commands Collected Together {background-color="aliceblue"}
 
-```{}
+```{bash}
 % git init test
 % cd test
 % echo "hello world" > foo.txt
@@ -390,8 +399,8 @@ Changes to be committed:
 ## Helpful git syntax
 
 
-1.  `% git log` prints log of recent commits
-2.  `% git diff` among files which have changed since last commit, go line-by-line to show changes
+1. `% git log` prints log of recent commits
+2. `% git diff` among files which have changed since last commit, go line-by-line to show changes
 3. `% git add .` adds all files (both untracked and modified) to the staging area
 
 
@@ -408,7 +417,7 @@ Changes to be committed:
 ## Git Ignore II
 Example `.gitignore` :
 
-```{}
+```{bash}
 # ignore compiled python
 .pyc
 
@@ -433,7 +442,7 @@ See more examples **[here (link)](https://github.com/github/gitignore)** includi
 
 * Use `.gitignore` to ignore irrelevant files
 
-## Do-Pair-Share gitignore (do in lab) {style="font-size: 0.7em"}
+## Do-Pair-Share gitignore (do in lab) {style="font-size: 0.7em" background-color="aliceblue"}
 
 1. In Terminal (Mac)/PowerShell (PC), create a repo named `test` 
 2. Change directory so you are inside the repo
@@ -456,7 +465,7 @@ Tips:
 * `HEAD` and Switching Branches
 * "Undo"
 
-## Branching {style="font-size: 0.6
+## Branching {style="font-size: 0.6em"}
 
 ![](img/branching_1.png){fig-align="center" width=105%}
 
@@ -482,7 +491,7 @@ Tips:
 ![](img/branching_2.png){fig-align="center" width=105%}
 
 * `HEAD` is your current position in the Git repo's history 
-    * Helpful analogy: if you think of each commit as a different folder, this is like your current working directory at the command line
+    <!-- * Helpful analogy: if you think of each commit as a different folder, this is like your current working directory at the command line MS to GGG: I think this is more confusing than helpful-->
 * Right now, the `HEAD` is in the `master` branch at commit `C2` (add `HEAD` to tinkertoy)
 * `% git switch iss53`
 * Switches our `HEAD` (i.e., where we are) to our new branch `iss53`  (update `HEAD` on tinkertoy)
@@ -587,9 +596,9 @@ You tested your work and you are ready to put it into production by updating the
 
 ![](img/merging_3.png){fig-align="center" width=75%}
 
-This is called a _"three way merge"_ because it relies on three inputs: the *nearest common ancestor* (`C2`), current branch (`C4`), incoming branch (`C5`)
+This is called a _"three way merge"_ because it relies on three inputs: the *nearest common ancestor* (`C2`), current branch (`C4`), incoming branch ( `C5`)
 
-## Three way merge III
+## Three way merge III{style="font-size: 0.7em"}
 
 You ask git to merge but it refuses!
 
@@ -839,7 +848,7 @@ git commit -m "C4: resolved conflict between main and hotfix and merged"
 ## Three way merge with a conflict VIII -- image
 
 
-![](img/merge_example3.png){fig-align="center" height=70%}
+![](img/merge_example3.png){fig-align="center" height=50%}
 
 
 ## Three way merge with a conflict VIII -- ascii
@@ -862,7 +871,7 @@ preserved in case we want to revive it
 
 
 
-## do-pair-share: merge conflicts {style="font-size: 0.7em"}
+## do-pair-share: merge conflicts {style="font-size: 0.6em" background-color="aliceblue"} 
 
 
 
@@ -1019,10 +1028,12 @@ Note: we already had this as a "tip" in the do-pair-share
 
 You will see in Terminal/Powershell: 
 
-`Updates were rejected because the remote contains work that you do not have locally. This is usually caused by another repository pushing to the same ref. You may want to first merge the remote changes (e.g., hint: 'git pull') before pushing again.`
+```{}
+Updates were rejected because the remote contains work that you do not have locally. This is usually caused by another repository pushing to the same ref. You may want to first merge the remote changes (e.g., hint: 'git pull') before pushing again.
+```
 
 
-## Pull Requests {style="font-size: 0.8em"}
+## Pull Requests {style="font-size: 0.7em"}
 * A pull request is a way to *propose* changes from your branch to be merged into the main project/branch
 * Doesn't `git merge` already do this? Yes, but pull requests allow teammates to review your code before it gets merged.
 * Example: an open pull request for `merge_example` repo ([here](https://github.com/uchicago-harris-dap/merge_example/pull/1))
@@ -1030,12 +1041,12 @@ You will see in Terminal/Powershell:
 
 ![](img/pull_request_2.png){fig-align="center" height=50%}
 
-## Pull Requests {style="font-size: 0.8em"}
+## Pull Requests {style="font-size: 0.7em"}
 * Pull requests allow for line-by-line comparison of changed files on Github.com
   * Click "+" to add a comment (show in browser)
   * They also identify merge conflicts
 
-![](img/pull_request_1.png){fig-align="center" height=50%}
+![](img/pull_request_1.png){fig-align="center" height=40%}
 
 
 ## `git merge` vs pull requests

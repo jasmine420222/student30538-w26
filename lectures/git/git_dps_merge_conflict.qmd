@@ -1,0 +1,88 @@
+
+---
+title: "Version Control Conflict Do-Pair-Share Solution"
+author: "Peter Ganong, Maggie Shi, and Will Pennington" 
+date: "2026-01-05"
+format:
+    revealjs:
+        slide-number: true
+        show-slide-number: all
+---
+
+## do-pair-share: Solution
+
+File versions:
+
+\tiny
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{python}
+#| eval: false
+#| echo: true
+
+'''
+A function that adds x to y
+'''
+# define function
+def add(x, y):
+# arguments: x, y (numbers to add)
+    return (x + y)
+```
+
+```{}
+$ git switch main
+```
+:::
+
+::: {.column width="45%"}
+```{python}
+#| eval: false
+#| echo: true
+
+'''
+A function that adds a list of numbers together
+'''
+# define function
+def add(x):
+# arguments: x (list of numbers to be added)
+    return sum(x)
+```
+
+```{}
+$ git switch iss53
+```
+:::
+
+::::
+
+\normalsize
+
+## do-pair-share: Solution
+```{}
+$ git switch main
+$ git merge iss53
+```
+* Following *git merge* command, resolve conflict by selecting "Accept Incoming Change" in Visual Studio Code
+
+![](img/do_pair_share_1.png){fig-align="center" height=25%}
+
+
+## do-pair-share: Solution
+How `add.py` on `main` looks after conflict is resolved
+
+```{python}
+#| eval: false
+#| echo: true
+
+'''
+A function that adds a list of numbers together
+'''
+# define function
+def add(x):
+# arguments: x (list of numbers to be added)
+    return sum(x)
+```
+
+Finally `git add add.py` and then `git commit -m "C5"` your resolved version
