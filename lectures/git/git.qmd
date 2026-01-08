@@ -746,7 +746,13 @@ def add(x, y):
 ::::
 
 * **Conflict**: Each branch contains `add.py` with a different version of the `add()` function 
-* Discussion q: suppose branch `iss53` added a new function starting at line 6 `sum()`. Would there be a conflict?
+
+
+. . .
+
+* Discussion q: hypothetical branch `iss_sum` takes commit `C0` and adds a new function starting at line 6 `sum()`. You switch `HEAD` to `main` and run `merge iss_sum`. Would there be a conflict?
+
+
 
 
 <!--which has the following commit history:

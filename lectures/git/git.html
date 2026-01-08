@@ -1324,7 +1324,10 @@ Merge made by the 'ort' strategy.</code></pre>
 </div>
 <ul>
 <li><strong>Conflict</strong>: Each branch contains <code>add.py</code> with a different version of the <code>add()</code> function</li>
-<li>Discussion q: suppose branch <code>iss53</code> added a new function starting at line 6 <code>sum()</code>. Would there be a conflict?</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Discussion q: hypothetical branch <code>iss_sum</code> takes commit <code>C0</code> and adds a new function starting at line 6 <code>sum()</code>. You switch <code>HEAD</code> to <code>main</code> and run <code>merge iss_sum</code>. Would there be a conflict?</li>
 </ul>
 <!--which has the following commit history:
 
@@ -1337,6 +1340,7 @@ Merge made by the 'ort' strategy.</code></pre>
 | C2   | `iss53`  | Change `add.py` to add a list            | C0      | no        |
 | C3   | `main`   | Change `add.py` to add x to 4            | C0         | no        | -->
 <!-- | C4   | `main`   | Merge `hotfix` into `main`               | C1 \& C3 | yes!      | -->
+</div>
 </section>
 <section id="three-way-merge-with-a-conflict-iv-skip" class="slide level2" style="font-size: 0.8em">
 <h2>Three way merge with a conflict IV (SKIP)</h2>
